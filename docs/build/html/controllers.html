@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controllers &mdash; Trabajo Final Intermedio Python o.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DataBase" href="db.html" />
+    <link rel="prev" title="Welcome to Trabajo Final Intermedio Python’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Trabajo Final Intermedio Python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="db.html">DataBase</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Trabajo Final Intermedio Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Controllers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/controllers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controllers">
+<h1>Controllers<a class="headerlink" href="#controllers" title="Permalink to this heading"></a></h1>
+<section id="id1">
+<h2>Controllers<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>CRUD OPERATIONS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>class Screen():</p>
+<blockquote>
+<div><p>“””
+Updating main screen once adding a new student.</p>
+<p>“””</p>
+<dl>
+<dt>def update_screen(self, data):</dt><dd><dl>
+<dt>try:</dt><dd><p>self.data = data
+self.students_details = self.data.get_children()
+for i in self.students_details:</p>
+<blockquote>
+<div><p>self.data.delete(i)</p>
+</div></blockquote>
+<p>self.info = Student.select()
+for x in self.info:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>self.data.insert(‘’, “end”, text=x, values=(</dt><dd><p>x.Name, x.LastName, x.Age))</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt>except Exception as e:</dt><dd><p>print(e)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>class Controller(Screen):</p>
+<blockquote>
+<div><p>“””
+Adding a new student.</p>
+<p>“””</p>
+<dl>
+<dt>def create(self, Name, LastName, Age, tree, nameEntry, lastNameEntry, ageEntry):</dt><dd><dl>
+<dt>try:</dt><dd><p>self.nameEntry = nameEntry
+self.lastNameEntry = lastNameEntry
+self.ageEntry = ageEntry
+self.Name = Name
+self.LastName = LastName
+self.Age = Age
+self.patron = “[a-zA-Z]*$”
+if (re.match(self.patron, self.Name)):</p>
+<blockquote>
+<div><dl>
+<dt>if (len(self.Name) != 0 and len(self.LastName) != 0 and self.Age &gt;= 0):</dt><dd><dl>
+<dt>try:</dt><dd><dl class="simple">
+<dt>self.student = Student(</dt><dd><p>Name=Name,
+LastName=LastName,
+Age=Age</p>
+</dd>
+</dl>
+<p>)</p>
+<p>self.student.save()
+self.nameEntry.delete(0, “end”)
+self.lastNameEntry.delete(0, “end”)
+self.ageEntry.delete(0, “end”)
+self.update_screen(tree)</p>
+</dd>
+<dt>except:</dt><dd><p>print(“Could not save Data.”)</p>
+</dd>
+</dl>
+</dd>
+<dt>else:</dt><dd><dl class="simple">
+<dt>showerror(title=”Error”,</dt><dd><p>message=”All inputs must be completed.”)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>else:</dt><dd><p>showerror(title=”Error”, message=”Name must be letters only.”)</p>
+</dd>
+</dl>
+</dd>
+<dt>except Exception as e:</dt><dd><p>print(e)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>“””
+Updating student.</p>
+<p>“””
+def update(self, id, Name, LastName, Age, tree, update_window):</p>
+<blockquote>
+<div><dl>
+<dt>try:</dt><dd><p>self.id = id
+self.Name = Name
+self.LastName = LastName
+self.Age = Age
+self.tree = tree
+self.update_window = update_window
+self.selected_student = tree.selection()
+self.student = tree.item(self.selected_student)
+self.student_id = self.student[“text”]</p>
+<dl class="simple">
+<dt>if(self.id != 0 and self.Name !=”” and self.LastName !=”” and self.Age &gt;= 0):</dt><dd><p>self.updated_student = Student.update(Name=self.Name, LastName=self.LastName, Age=self.Age).where(self.id == self.student_id).execute()
+self.update_screen(tree)
+self.update_window.destroy()
+showinfo(title=”Success”, message=”Student updated.”)</p>
+</dd>
+<dt>else:</dt><dd><p>showerror(title=”Error”, message=”All inputs must be completed.”)</p>
+</dd>
+</dl>
+</dd>
+<dt>except Exception as e:</dt><dd><p>print(e)</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>“””
+Deleting a student.</p>
+<p>“””
+def delete(self, tree):</p>
+<blockquote>
+<div><dl>
+<dt>try:</dt><dd><p>self.tree = tree
+self.selected_student = tree.selection()
+self.student = tree.item(self.selected_student)
+self.student_id = self.student[“text”]</p>
+<dl>
+<dt>if (self.student_id != “”):</dt><dd><dl class="simple">
+<dt>self.deleted_student = Student.get(</dt><dd><p>Student.id == self.student_id)</p>
+</dd>
+</dl>
+<p>self.deleted_student.delete_instance()</p>
+<p>self.update_screen(tree)</p>
+</dd>
+<dt>else:</dt><dd><p>showerror(title=”Error”, message=”Must be student selected.”)</p>
+</dd>
+</dl>
+</dd>
+<dt>except Exception as e:</dt><dd><p>print(e)</p>
+</dd>
+</dl>
+</div></blockquote>
+</div></blockquote>
+<dl>
+<dt>class Window(Controller):</dt><dd><dl>
+<dt>def update_screen_details(self, root, tree):</dt><dd><p>“””
+Pop up for a new window when Update Student button is clicked.</p>
+<p>“””
+try:</p>
+<blockquote>
+<div><p>self.root = root
+self.tree = tree</p>
+<p>self.update_window = Toplevel(self.root)
+self.update_window.title(“Update Student”)
+self.update_window.geometry(“420x150”)</p>
+<p>title = Label(self.update_window, text=”Update”, bg=”green”, fg=”white”, height=1, width=60)
+title.grid(row=0, column=0, columnspan=4, padx=1, pady=1, sticky=W+E)</p>
+<p>self.id = Label(self.update_window, text=”Student ID to Update”)
+self.id.grid(row=1, column=0, sticky=W)
+self.name = Label(self.update_window, text=”Name:”)
+self.name.grid(row=2, column=0, sticky=W)
+self.lastName = Label(self.update_window, text=”Last Name:”)
+self.lastName.grid(row=3, column=0, sticky=W)
+self.age = Label(self.update_window, text=”Age:”)
+self.age.grid(row=4, column=0, sticky=W)</p>
+<p>self.idValue, self.nameValue, self.lastNameValue, self.ageValue = IntVar(), StringVar(), StringVar(), IntVar()
+self.entryLarge = 20</p>
+<p>self.idEntry = Entry(self.update_window, textvariable= self.idValue, width=self.entryLarge)
+self.idEntry.grid(row=1, column=1)
+self.nameEntry = Entry(self.update_window, textvariable=self.nameValue, width=self.entryLarge)
+self.nameEntry.grid(row=2, column=1)
+self.lastNameEntry = Entry(self.update_window, textvariable=self.lastNameValue, width=self.entryLarge)
+self.lastNameEntry.grid(row=3, column=1)
+self.age = Entry(self.update_window, textvariable=self.ageValue, width=self.entryLarge)
+self.age.grid(row=4, column=1)</p>
+<p>btn_update = Button(self.update_window, text=”Update Student”, bg=”brown”, fg= “white”, command=lambda:self.update(self.idValue.get(), self.nameValue.get(), self.lastNameValue.get(), self.ageValue.get(), self.tree, self.update_window))
+btn_update.grid(row=13, column=1)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>except Exception as e:</dt><dd><p>print(e)</p>
+</dd>
+</dl>
+</dd>
+<dt>def search_screen(self, root):</dt><dd><p>“””
+Pop up for a new window when Search Student button is clicked.</p>
+<p>“””
+try:</p>
+<blockquote>
+<div><p>self.root = root
+self.nameValue, self.lastNameValue, self.ageValue = StringVar(), StringVar(), IntVar()
+self.idValue = IntVar()</p>
+<p>self.entryLarge = 20
+self.search_window = Toplevel(self.root)
+self.search_window.title(“Search Movie”)
+self.search_window.geometry(“420x150”)</p>
+<p>title = Label(self.search_window, text=”Search”, bg=”green”, fg=”white”, height=1, width=60)
+title.grid(row=0, column=0, columnspan=4, padx=1, pady=1, sticky=W+E)</p>
+<p>self.id = Label(self.search_window, text=”Search Student by ID: “)
+self.id.grid(row=1, column=0, sticky=W)</p>
+<p>self.name = Label(self.search_window, text=”Name:”)
+self.name.grid(row=2, column=0, sticky=W)
+self.lastName = Label(self.search_window, text=”Last Name:”)
+self.lastName.grid(row=3, column=0, sticky=W)
+self.age = Label(self.search_window, text=”Age:”)
+self.age.grid(row=4, column=0, sticky=W)</p>
+<p>self.idEntry = Entry(self.search_window, textvariable = self.idValue, width=self.entryLarge)
+self.idEntry.grid(row=1, column=1, sticky=W)
+self.nameEntry = Entry(self.search_window, textvariable=self.nameValue, width=self.entryLarge)
+self.nameEntry.grid(row=2, column=1, sticky=W)
+self.lastNameEntry = Entry(self.search_window, textvariable=self.lastNameValue, width=self.entryLarge)
+self.lastNameEntry.grid(row=3, column=1, sticky=W)
+self.age = Entry(self.search_window, textvariable=self.ageValue, width=self.entryLarge)
+self.age.grid(row=4, column=1, sticky=W)</p>
+<p>self.btn_search = Button(self.search_window, text=”Search Student”, bg=”orange”, fg=”white”, command=lambda:self.update_search_screen(self.idValue.get()))
+self.btn_search.grid(row=13, column=1, sticky=W)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>except Exception as e:</dt><dd><p>print(e)</p>
+</dd>
+</dl>
+</dd>
+<dt>def update_search_screen(self, id):</dt><dd><p>“””
+Returning data in screen when Student was found by ID.</p>
+<p>“””
+try:</p>
+<blockquote>
+<div><p>self.id = id
+self.found_student = Student.select().where(Student.id == self.id)
+if(self.found_student):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>for i in self.found_student:</dt><dd><p>self.nameValue.set(i.Name)
+self.lastNameValue.set(i.LastName)
+self.ageValue.set(i.Age)</p>
+</dd>
+</dl>
+<p>showinfo(title=”Success”, message=(“Student found.”))</p>
+</div></blockquote>
+<dl class="simple">
+<dt>else:</dt><dd><p>showerror(title=”Error”, message=”No Student found.”)</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>except Exception as e:</dt><dd><p>print(e)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Trabajo Final Intermedio Python’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="db.html" class="btn btn-neutral float-right" title="DataBase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Cristian Machuca.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
