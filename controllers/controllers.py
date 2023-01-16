@@ -6,7 +6,14 @@ from tkinter import ttk
 import re
 
 
+
+
+
 def notification(fn):
+    """
+    Pop up for a DECORATOR IN CONSOLE.
+
+    """
     def wrapper(*args):
         try:
             print(f"""
@@ -135,11 +142,6 @@ class Controller(Screen):
 
         except Exception as e:
             print(e)
-
-        """
-        Pop up for a DECORATOR IN CONSOLE.
-        
-        """
 
 
 class Window(Controller):
