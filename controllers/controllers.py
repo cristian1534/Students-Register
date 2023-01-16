@@ -3,10 +3,10 @@ from peewee import *
 from database.db_conection import Student
 from tkinter.messagebox import *
 from tkinter import ttk
+from datetime import datetime
+import frontend.Home as values
+import io
 import re
-
-
-
 
 
 def notification(fn):
@@ -17,10 +17,41 @@ def notification(fn):
     def wrapper(*args):
         try:
             print(f"""
-              Precessing: {fn}
-              """)
+    --------->  Precessing: {fn}
+                """)
             fn(*args)
-            print("Process finished successfully.")
+            print("""
+    --------->  Process finished successfully.
+                """)
+            print(("*")*100)
+
+        except Exception as e:
+            print(e)
+
+    return wrapper
+
+
+def documentation(fn):
+    def wrapper(*args):
+
+        try:
+            print("""
+    --------->  Saving data in .TXT file.
+                """)
+
+            title = "Name" + " "+ "LastName" + " "+"Age"+ " " +"Date\n"
+            name = values.nameValue.get()
+            lastName = values.lastNameValue.get()
+            age = str(values.ageValue.get())
+            date = datetime.now()
+
+            data = title + name + " " + lastName+" " + age + " " + str(date)
+
+            f = open("Created.txt", "w")
+            f.write(data)
+            f.close()
+
+            fn(*args)
 
         except Exception as e:
             print(e)
@@ -56,6 +87,7 @@ class Controller(Screen):
     Adding a new student.
 
     """
+    @documentation
     @notification
     def create(self, Name, LastName, Age, tree, nameEntry, lastNameEntry, ageEntry):
         try:
